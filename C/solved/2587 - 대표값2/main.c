@@ -50,6 +50,8 @@ int main(void){
     int avg;
     int mid;
 
+    avg = 0;
+
     for(int i=0;i<5;i++){
         scanf("%d",&arr[i]);
         avg += arr[i];
