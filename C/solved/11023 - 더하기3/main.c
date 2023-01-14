@@ -11,7 +11,7 @@ int main(void){
     int temp;
     while(scanf("%d",&temp)!=EOF){
         sum += temp;
-        printf("sum : %d\n",sum);
+//        printf("sum : %d\n",sum);
     }
     printf("%d", sum);
     return 0;
