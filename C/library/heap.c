@@ -1,3 +1,9 @@
+/*
+library
+
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -28,6 +34,7 @@ NODE* srchNode(HEAP* heap, NODE* key);
 int deleteNode(HEAP* heap, NODE* node);
 
 void traverseHeap(HEAP* heap);
+void swap(HEAP* heap, int arg1, int arg2);
 
 
 int main(void){
@@ -81,6 +88,13 @@ int addNode(HEAP* heap, NODE* node){
         return -1;
     }
 
+    heap->arr[heap->size] = node;
+
+    int parent;
+    int cur = heap->size;
+    while(1){
+
+    }
     
 }
 
@@ -92,5 +106,24 @@ int deleteNode(HEAP* heap, NODE* node);
 
 
 void traverseHeap(HEAP* heap);
+
+
+void swap(HEAP* heap, int arg1, int arg2){
+
+    if(heap == NULL){
+        fprintf(stderr, "Error occured in function swap\nheap is Null\n");
+    }
+
+    if(arg1 >= heap->size || arg2 >= heap->size){
+        fprintf(stderr, "Error occured in function swap\n");
+        fprintf(stderr, "arg1 : %d, arg2 : %d but heap size is %d\n", arg1, arg2, heap->size);
+        return;
+    }
+
+
+    NODE* temp = heap->arr[arg1];
+    heap->arr[arg1] = heap->arr[arg2];
+    heap->arr[arg2] = temp;
+}
 
 
