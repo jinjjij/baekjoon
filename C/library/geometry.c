@@ -66,3 +66,18 @@ int isOnSameLine(DOT* dot1, DOT* dot2, DOT* dot3){
         return 0;
     }
 }
+
+
+double polygonArea(double* X, double* Y, int size){
+    double area = 0;
+    int j = size - 1;
+
+    for(int i=0;i<size;i++){
+        area += (X[j]+X[i]) * (Y[j]-Y[i]) / 2;
+        j = i;
+    }
+
+    if(area<0)
+        area = -area;
+    return area;
+}
