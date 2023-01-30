@@ -1,8 +1,6 @@
 /*
-library
-
+https://www.acmicpc.net/problem/7662
 */
-
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -222,60 +220,78 @@ void deleteNode(HEAP* heap, int key){
 
 
 
+int T,k;
 
-int main(void){
-    
-    HEAP* heap = createHeap(1000);
-    
-    printf("\nheap library test\n");
-    int input = 0;
-    int brkFlg = 1;
-    while(brkFlg){
-        printf("\nselect menu:\n");
-        printf("1. add node\n2. traverse\n3. pop node\n4. search node\n5. delete node\n0. exit\n>>");
-        scanf("%d", &input);
-        int data;
-        switch(input){
-            case 1:
-                printf("add node :");
-                scanf("%d", &data);
-                NODE* node = createNode(data);
-                printf("added in index = %d\n",addNode(heap, node));
-                break;
-            case 2:
-                traverseHeap(heap);
-                break;
-            case 3:
-                if(heap->size == 0){
-                    printf("empty node\n");
-                }else{
-                    NODE* ret = popNode(heap);
-                    printf("deleted : %d\n", ret->data);
-                    destroyNode(ret);
+
+int main(void)
+{
+    FILE* readMod;
+
+    readMod = stdin;
+
+    // test
+    readMod = fopen("input.txt", "rt");
+
+    fscanf(readMod, "%d", &T);
+
+    for(int t=0; t<T; t++){
+
+        fscanf(readMod, "%d", &k);
+        HEAP* maxHeap = createHeap(k);
+        HEAP* minHeap = createHeap(k);
+
+        
+        char inputC;
+        int inputI;
+
+        for(int i=0;i<k;i++){
+            fscanf(readMod, " %c %d", &inputC, &inputI);
+
+            if(inputC == 'I'){
+                NODE* maxNode = createNode(inputI);
+                NODE* minNode = createNode(-inputI);
+                addNode(maxHeap, maxNode);
+                addNode(minHeap, minNode);
+            }
+
+            if(inputC == 'D' && inputI == 1){       // 최댓값 삭제
+                if(maxHeap->size == 0){
+                    continue;
                 }
-                break;
-            case 4:
-                printf("key : ");
-                scanf("%d", &data);
-                printf("node (%d) is in index %d\n", data, srchNode(heap, data));
-                break;
-            case 5:
-                printf("key: ");
-                scanf("%d", &data);
-                deleteNode(heap, data);
-                traverseHeap(heap);
-                break;
-            case 0:
-                brkFlg = 0;
-                printf("shuting down...\n");
-                break;
-            default:
-                printf("\ninvalid input\n");
+                NODE* max = popNode(maxHeap);
+                deleteNode(minHeap, -max->data);
+                destroyNode(max);
+            }
+
+            if(inputC == 'D' && inputI == -1){      // 최솟값 삭제
+                if(maxHeap->size == 0){
+                    continue;
+                }
+                NODE* min = popNode(minHeap);
+                deleteNode(maxHeap, -min->data);
+                destroyNode(min);
+            }
         }
+
+        if(maxHeap->size==0){
+            printf("EMPTY\n");
+        }else{
+            NODE* max = popNode(maxHeap);
+            NODE* min = popNode(minHeap);
+
+            printf("%d %d\n", max->data, -min->data);
+
+            destroyNode(max);
+            destroyNode(min);
+        }
+
+
+        destroyHeap(maxHeap);
+        destroyHeap(minHeap);
     }
 
+    // test
+    fclose(readMod);
 
-    destroyHeap(heap);
     return 0;
 }
-
