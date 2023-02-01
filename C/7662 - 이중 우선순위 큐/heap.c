@@ -230,7 +230,7 @@ int main(void)
     readMod = stdin;
 
     // test
-    readMod = fopen("input.txt", "rt");
+    //readMod = fopen("input.txt", "rt");
 
     fscanf(readMod, "%d", &T);
 
@@ -291,7 +291,7 @@ int main(void)
     }
 
     // test
-    fclose(readMod);
+    //fclose(readMod);
 
     return 0;
 }
