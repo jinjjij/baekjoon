@@ -6,49 +6,159 @@ https://www.acmicpc.net/problem/16953
 #include <stdlib.h>
 
 
+/*
+    QUEUE Library
+*/
 
-int dfs(int n, int target, int* arr){
-    
+typedef struct _node{
+    int data;
+    struct _node* prev;
+} NODE;
 
 
-    if(n>target){
-        return -1;
-    }else if(n == target){
-        return 0;
+typedef struct _queue{
+    NODE* back;
+    NODE* front;
+    int size;
+} QUEUE;
+
+
+QUEUE* createQueue(void);
+NODE* createNode(int data, NODE* prev);
+
+void destroyQueue(QUEUE* queue);
+void destroyNode(NODE* node);
+
+void enQueue(QUEUE* queue, int data);
+int deQueue(QUEUE* queue);
+
+
+
+QUEUE* createQueue(void){
+    QUEUE* queue = (QUEUE*)malloc(sizeof(QUEUE));
+    queue->back = NULL;
+    queue->front = NULL;
+    queue->size = 0;
+    return queue;
+}
+
+
+NODE* createNode(int data, NODE* prev){
+    NODE* node = (NODE*)malloc(sizeof(NODE));
+    node->data = data;
+    node->prev = prev;
+    return node;
+}
+
+void destroyQueue(QUEUE* queue){
+    if(queue->size!=0){
+        destroyNode(queue->front);
     }
-    if(arr[n]!=-1)  return arr[n];
+    free(queue);
+}
 
-    int min = -1;
-    int temp;
 
-    temp = dfs(n*10+1,target, arr);
-    if((min==-1 || min>temp) && temp!=-1){
-        min = temp+1;
+void destroyNode(NODE* node){
+    if(node->prev!=NULL)    destroyNode(node->prev);
+    free(node);
+}
+
+
+void enQueue(QUEUE* queue, int data){
+    NODE* node = createNode(data, queue->back);
+    queue->back = node;
+    queue->size++;
+
+    if(queue->size==1){
+        queue->front = node;
+    }
+}
+
+
+int deQueue(QUEUE* queue){
+    NODE* n;
+    if(queue->front!=NULL){
+        n = queue->front;
+        queue->front = queue->front->prev;
+        queue->size--;
     }
 
-    temp = dfs(n*2,target, arr);
-    if((min==-1 || min>temp) && temp!=-1){
-        min = temp+1;
+    if(queue->size==0){
+        queue->back = NULL;
+        queue->front = NULL;
     }
 
+    int ret = n->data;
+    n->prev = NULL;
+    destroyNode(n);
+    return ret;
+}
 
-    //printf("dfs(%d,%d)=%d\n", n,target, min);
 
-    arr[n] = min;
-    return min;
+void printQueue(QUEUE* queue){
+    NODE* cur = queue->front;
+    printf("QUEUE : ");
+    while(cur!=NULL){
+        printf("%d\t", cur->data);
+        cur = cur->prev;
+    }
+    printf("back\n");
+}
+
+
+/*
+    queue library end
+*/
+
+
+int bfs(int n, int target){
+    QUEUE* que = createQueue();
+    QUEUE* levQueue = createQueue();
+
+    enQueue(que, n);
+    enQueue(levQueue, 0);
+    int cur;
+    int curLev;
+    int flg = 0;
+    while(que->size>0){
+        cur = deQueue(que);
+        curLev = deQueue(levQueue);
+        printf("%d(%d)\n", cur, curLev);
+        if(cur==target){
+            flg = 1;
+            break;
+        }
+
+        if(10*cur+1<=target){
+            printf("10*cur+1 = %d\n", 10*cur+1);
+            enQueue(que, 10*cur+1);
+            enQueue(levQueue, curLev+1);
+        }
+
+        if(cur*2<=target){
+            printf("2*cur = %d\n", 2*cur);
+            enQueue(que, 2*cur);
+            enQueue(levQueue, curLev+1);
+        }
+
+        printQueue(que);
+    }
+    printf("while Ended\n");
+    destroyQueue(que);
+    destroyQueue(levQueue);
+
+    if(flg) return curLev;
+    else    return -1;
 }
 
 
 int main(void){
     int A,B;
     scanf("%d %d", &A, &B);
-    int* arr = (int*)malloc(sizeof(int) * (B+1));
-    for(int i=0;i<B;i++){
-        arr[i] = -1;
-    }
-    int temp = dfs(A, B, arr)+1;
-    if(temp==0) temp = -1;
-    printf("%d", temp);
-    free(arr);
+
+    int temp = bfs(A,B);
+    if(temp==-1)    printf("-1");
+    else            printf("%d", temp+1);
+
     return 0;
 }
