@@ -65,7 +65,8 @@ void destroyNode(NODE* node){
 
 
 void enQueue(QUEUE* queue, int data){
-    NODE* node = createNode(data, queue->back);
+    NODE* node = createNode(data, NULL);
+    if(queue->back != NULL)   queue->back->prev = node;
     queue->back = node;
     queue->size++;
 
@@ -110,40 +111,37 @@ void printQueue(QUEUE* queue){
     queue library end
 */
 
+typedef long long lld;
 
-int bfs(int n, int target){
+
+int bfs(int n, lld target){
     QUEUE* que = createQueue();
     QUEUE* levQueue = createQueue();
 
     enQueue(que, n);
     enQueue(levQueue, 0);
-    int cur;
+    lld cur;
     int curLev;
     int flg = 0;
     while(que->size>0){
         cur = deQueue(que);
         curLev = deQueue(levQueue);
-        printf("%d(%d)\n", cur, curLev);
         if(cur==target){
             flg = 1;
             break;
         }
 
         if(10*cur+1<=target){
-            printf("10*cur+1 = %d\n", 10*cur+1);
             enQueue(que, 10*cur+1);
             enQueue(levQueue, curLev+1);
         }
 
         if(cur*2<=target){
-            printf("2*cur = %d\n", 2*cur);
             enQueue(que, 2*cur);
             enQueue(levQueue, curLev+1);
         }
-
-        printQueue(que);
     }
-    printf("while Ended\n");
+
     destroyQueue(que);
     destroyQueue(levQueue);
 
