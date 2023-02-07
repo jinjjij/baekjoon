@@ -164,28 +164,29 @@ void DSLR(int A, int B, char* result){
 
         //D
         int d = D(cur);
-        if(prev[d] != -1){
+        if(prev[d] == -1){
             prev[d] = cur;
             enQueue(que, d);
         }
         //S
         int s = S(cur);
-        if(prev[s] != -1){
+        if(prev[s] == -1){
             prev[s] = cur;
             enQueue(que, s);
         }
         //L
         int l = L(cur);
-        if(prev[l] != -1){
+        if(prev[l] == -1){
             prev[l] = cur;
             enQueue(que, l);
         }
         //R
         int r = R(cur);
-        if(prev[r] != -1){
+        if(prev[r] == -1){
             prev[r] = cur;
             enQueue(que, r);
         }
+        //printQueue(que);
     }
 
     int cur = B;
