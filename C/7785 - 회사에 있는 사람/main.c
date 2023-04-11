@@ -1,29 +1,26 @@
+/*
+https://www.acmicpc.net/problem/
+*/
+
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 
 
-// data : change this struct
+typedef struct employee{
+    int idx;
+    char name[10];
+    int state;
+} EM;
+
+
+
+
 typedef struct _data{
-    char addr[21];
-    char pw[21];  
+    char name[10];
+    int state;
 } DATA;
-
-
-DATA* createData(char* addr, char* pw){
-    DATA* data = (DATA*)malloc(sizeof(DATA));
-    strcpy(data->addr, addr);
-    strcpy(data->pw, pw);
-
-    return data;
-}
-
-
-void destroyData(DATA* data){
-    free(data);
-}
-
 
 
 typedef struct _node{
@@ -52,6 +49,15 @@ uint32_t djb33_hash(const char* s, size_t len)
 }
 
 
+DATA* createData(char* name, ){
+    DATA* data = (DATA*)malloc(sizeof(DATA));
+    strcpy(data->addr, addr);
+    strcpy(data->pw, pw);
+
+    return data;
+}
+
+
 NODE* createNode(DATA* data){
     NODE* node = (NODE*)malloc(sizeof(NODE));
     node->index = djb33_hash(data->addr, strlen(data->addr));
@@ -71,6 +77,9 @@ HASH* createHash(int cap){
     return hash;
 }
 
+void destroyData(DATA* data){
+    free(data);
+}
 
 
 void destroyNode(NODE* node){
@@ -151,4 +160,11 @@ void printHash(HASH* hash){
     for(int i=0;i<hash->cap;i++){
         if(hash->table[i]!=NULL)    printNode(hash->table[i], 0);
     }
+}
+
+
+
+int main(void){
+
+    return 0;
 }
