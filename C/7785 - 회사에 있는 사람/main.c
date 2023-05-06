@@ -8,19 +8,24 @@ https://www.acmicpc.net/problem/
 #include <string.h>
 
 
-typedef struct employee{
-    int idx;
-    char name[10];
-    int state;
-} EM;
-
-
-
-
+// data : change this struct
 typedef struct _data{
     char name[10];
-    int state;
 } DATA;
+
+
+DATA* createData(char* name){
+    DATA* data = (DATA*)malloc(sizeof(DATA));
+    strcpy(data->name, name);
+
+    return data;
+}
+
+
+void destroyData(DATA* data){
+    free(data);
+}
+
 
 
 typedef struct _node{
@@ -49,18 +54,9 @@ uint32_t djb33_hash(const char* s, size_t len)
 }
 
 
-DATA* createData(char* name, ){
-    DATA* data = (DATA*)malloc(sizeof(DATA));
-    strcpy(data->addr, addr);
-    strcpy(data->pw, pw);
-
-    return data;
-}
-
-
 NODE* createNode(DATA* data){
     NODE* node = (NODE*)malloc(sizeof(NODE));
-    node->index = djb33_hash(data->addr, strlen(data->addr));
+    node->index = djb33_hash(data->name, strlen(data->name));
     node->data = data;
     node->next = NULL;
 
@@ -77,9 +73,6 @@ HASH* createHash(int cap){
     return hash;
 }
 
-void destroyData(DATA* data){
-    free(data);
-}
 
 
 void destroyNode(NODE* node){
@@ -117,15 +110,15 @@ void addData(HASH* hash, DATA* data){
 }
 
 
-DATA* pullData(HASH* hash, char* keyaddr){
-    uint32_t keyIndex = djb33_hash(keyaddr, strlen(keyaddr));
+DATA* pullData(HASH* hash, char* keyname){
+    uint32_t keyIndex = djb33_hash(keyname, strlen(keyname));
     keyIndex %= hash->cap;
 
     NODE* cur = hash->table[keyIndex];
 
     int flg = 0;
     while(cur!=NULL){
-        if(strcmp(cur->data->addr, keyaddr) == 0){
+        if(strcmp(cur->data->name, keyname) == 0){
             flg = 1;
             break;
         }
@@ -140,6 +133,48 @@ DATA* pullData(HASH* hash, char* keyaddr){
 }
 
 
+DATA* deleteNode(HASH* hash, char* keyname){
+    uint32_t keyIndex = djb33_hash(keyname, strlen(keyname));
+    keyIndex %= hash->cap;
+
+    NODE* cur = hash->table[keyIndex];
+    NODE* prev = NULL;
+    NODE* next;
+    DATA* ret;
+    if(cur != NULL)     next = cur->next;
+
+    int flg = 0;
+    while(cur!=NULL){
+        if(strcmp(cur->data->name, keyname) == 0){
+            flg = 1;
+            break;
+        }
+        prev = cur;
+        cur = cur->next;
+        if(cur!=NULL)   next = cur->next;
+    }
+
+    if(prev != NULL){
+        if(next != NULL){
+            prev->next = next;
+        }else{
+            prev->next = NULL;
+        }
+    }else{
+        hash->table[keyIndex] = NULL;
+    }
+
+    ret = cur->data;
+    free(cur);
+
+    if(flg==0){
+        return NULL;
+    }else{
+        return ret;
+    }
+}
+
+
 
 void printNode(NODE* node, int lev){
 
@@ -147,7 +182,7 @@ void printNode(NODE* node, int lev){
     if(lev==1){
         printf("\t");
     }
-    printf("%s:%s\n", node->data->addr, node->data->pw);
+    printf("%s\n", node->data->name);
 
     if(node->next!=NULL){
         printNode(node->next, 1);
@@ -163,8 +198,59 @@ void printHash(HASH* hash){
 }
 
 
+int _cmp(const void* arg1, const void* arg2){
+    char* n1 = ((DATA*)arg1)->name;
+    char* n2 = ((DATA*)arg2)->name;
+    int ret = strcmp(n1, n2);
+    printf("cmp : %s, %s -> %d\n", n1, n2, ret);
+    printf("%d\n", strlen(n1));
+
+    return ret;
+}
+
+
+void printNames(HASH* hash){
+    DATA* sortedNames[100];
+    printf("printName debug1\n");
+    int idx = 0;
+
+    for(int i=0;i<hash->cap;i++){
+        if(hash->table[i]!=NULL){
+            sortedNames[idx++] = hash->table[i]->data;
+            printf("sN[%d]:%s\n",idx-1, sortedNames[idx-1]->name);
+        }
+    }
+    printf("idx = %d\n", idx);
+    qsort(sortedNames, idx, sizeof(DATA*), _cmp);
+
+    for(int i=0;i<idx;i++){
+        printf("%s\n", sortedNames[i]->name);
+    }
+}
+
 
 int main(void){
+    HASH* hash = createHash(1000);
+    int N = 0;
+    scanf("%d", &N);
 
+    char tmpName[10];
+    char state[10];
+
+    for(int i=0;i<N;i++){
+        scanf(" %s %s", tmpName, state);
+
+        if(!strcmp(state, "enter")){
+            DATA* data = createData(tmpName);
+            addData(hash, data);
+        }else if(!strcmp(state, "leave")){
+            DATA* delData = deleteNode(hash, tmpName);
+        }
+    }
+
+    printNames(hash);
+
+
+    destroyHash(hash);
     return 0;
 }

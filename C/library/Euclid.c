@@ -30,3 +30,38 @@ int exEuclid(int N, int M, int* s, int* t){
     *t = ti1;
     return ri1;
 }
+
+
+typedef long long int lld;
+
+// return gcd
+lld Euclid(lld N, lld M){
+    if(N<1 || M<1){
+        return -1;
+    }
+
+    if(N==1 || M == 1){
+        return 1;
+    }
+
+    if(N<M){
+        int tmp = M;
+        M = N;
+        N = tmp;
+    }
+
+    if(N%M == 0){
+        return M;
+    }else{
+        return Euclid(M, N%M);
+    }
+}
+
+
+// needs Euclid()
+lld lcm(lld N, lld M){
+    lld gcd = Euclid(N,M);
+
+    lld tmp = N/gcd;
+    return tmp*M;
+}
