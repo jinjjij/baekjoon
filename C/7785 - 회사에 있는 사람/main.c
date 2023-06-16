@@ -199,28 +199,36 @@ void printHash(HASH* hash){
 
 
 int _cmp(const void* arg1, const void* arg2){
-    char* n1 = ((DATA*)arg1)->name;
-    char* n2 = ((DATA*)arg2)->name;
+    char* n1 = (*((DATA**)arg1))->name;
+    char* n2 = (*((DATA**)arg2))->name;
+
     int ret = strcmp(n1, n2);
-    printf("cmp : %s, %s -> %d\n", n1, n2, ret);
-    printf("%d\n", strlen(n1));
+    //printf("cmp : %s, %s -> %d\n", n1, n2, ret);
+
+    if(ret>0){
+        return -1;
+    }else if(ret < 0){
+        return 1;
+    }else{
+        return 0;
+    }
 
     return ret;
 }
 
 
 void printNames(HASH* hash){
-    DATA* sortedNames[100];
-    printf("printName debug1\n");
+    DATA* sortedNames[100010];
+    //printf("printName debug1\n");
     int idx = 0;
 
     for(int i=0;i<hash->cap;i++){
         if(hash->table[i]!=NULL){
             sortedNames[idx++] = hash->table[i]->data;
-            printf("sN[%d]:%s\n",idx-1, sortedNames[idx-1]->name);
+            //printf("sN[%d]:%s\n",idx-1, sortedNames[idx-1]->name);
         }
     }
-    printf("idx = %d\n", idx);
+    //printf("idx = %d\n", idx);
     qsort(sortedNames, idx, sizeof(DATA*), _cmp);
 
     for(int i=0;i<idx;i++){
@@ -229,8 +237,12 @@ void printNames(HASH* hash){
 }
 
 
+
+
+
+
 int main(void){
-    HASH* hash = createHash(1000);
+    HASH* hash = createHash(100010);
     int N = 0;
     scanf("%d", &N);
 

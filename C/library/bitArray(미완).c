@@ -32,3 +32,9 @@ void putBit(BITARR* bitArr, lld idx, int value){
         bitArr->arr[idx/8] |= 1 << (idx%8);
     }
 }
+
+
+int main(void){
+    
+    return 0;
+}
