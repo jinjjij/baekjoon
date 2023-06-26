@@ -1,11 +1,13 @@
 /*
-https://www.acmicpc.net/problem/
+https://www.acmicpc.net/problem/7785
 */
 
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
+
+
 
 
 // data : change this struct
@@ -238,11 +240,11 @@ void printNames(HASH* hash){
 
 
 
-
+#define HASHSIZE 100000
 
 
 int main(void){
-    HASH* hash = createHash(100010);
+    HASH* hash = createHash(HASHSIZE);
     int N = 0;
     scanf("%d", &N);
 
