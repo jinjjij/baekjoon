@@ -59,10 +59,12 @@ int main(void){
         printf("%d\n", parent[i]);
     }
 
+    /*
     for(int i=0;i<N+1;i++){
         free(nodes[i].child);
     }
     free(nodes);
-    free(parent);    
+    free(parent);  
+    */  
     return 0;
 }
