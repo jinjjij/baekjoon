@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 
 int main(){
@@ -6,7 +7,8 @@ int main(){
     std::cin.tie(NULL);
     std::cout.tie(NULL);
 
+    std::string str = "1223asdfasdfa2133";
 
-    
+    std::cout << std::stoi(str);
     return 0;
 }

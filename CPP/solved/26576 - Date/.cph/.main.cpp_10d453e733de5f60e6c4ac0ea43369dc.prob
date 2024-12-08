@@ -1,0 +1,1 @@
+{"name":"Local: main","url":"d:\\Projects\\Baekjoon\\CPP\\26576 - Date\\main.cpp","tests":[{"id":1719822736986,"input":"3\nFebruary 5, 990\nDecember 25, 12018\nDecembuary 31, 2000","output":"02/05/90\n12/25/18\nInvalid"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Projects\\Baekjoon\\CPP\\26576 - Date\\main.cpp","group":"local","local":true}

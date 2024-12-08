@@ -1,0 +1,1 @@
+{"name":"Local: main","url":"d:\\Projects\\Baekjoon\\CPP\\4581 - Voting\\main.cpp","tests":[{"id":1719958055073,"input":"YNNAPYYNY\nYAYAYAYA\nPYPPNNYA\nYNNAA\nNYAAA\n#","output":"yes\nneed quorum\ntie\nno\nneed quorum"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Projects\\Baekjoon\\CPP\\4581 - Voting\\main.cpp","group":"local","local":true}

@@ -1,0 +1,1 @@
+{"name":"Local: main","url":"e:\\Projects\\Baekjoon\\CPP\\9786 - Common Fraction\\main.cpp","tests":[{"id":1719271981747,"input":"5\n1 2\n3 9\n63 462\n11 22\n13 14","output":"1 2\n1 3\n3 22\n1 2\n13 14"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\Projects\\Baekjoon\\CPP\\9786 - Common Fraction\\main.cpp","group":"local","local":true}
