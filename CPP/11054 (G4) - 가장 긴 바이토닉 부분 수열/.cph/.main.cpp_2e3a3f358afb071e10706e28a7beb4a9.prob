@@ -1,0 +1,1 @@
+{"name":"Local: main","url":"d:\\Projects\\Baekjoon\\CPP\\11054 - 가장 긴 바이토닉 부분 수열\\main.cpp","tests":[{"id":1733790931007,"input":"10\n1 5 2 1 4 3 4 5 2 1","output":"7"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Projects\\Baekjoon\\CPP\\11054 - 가장 긴 바이토닉 부분 수열\\main.cpp","group":"local","local":true}
