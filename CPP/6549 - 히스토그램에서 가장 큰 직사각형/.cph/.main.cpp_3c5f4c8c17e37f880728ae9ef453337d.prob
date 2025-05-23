@@ -1,0 +1,1 @@
+{"name":"Local: main","url":"d:\\Projects\\Baekjoon\\CPP\\6549 - 히스토그램에서 가장 큰 직사각형\\main.cpp","tests":[{"id":1737008599284,"input":"7 2 1 4 5 1 3 3\n4 1000 1000 1000 1000\n0","output":"8\n4000"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Projects\\Baekjoon\\CPP\\6549 - 히스토그램에서 가장 큰 직사각형\\main.cpp","group":"local","local":true}
