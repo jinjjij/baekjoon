@@ -1,0 +1,1 @@
+{"name":"Local: main","url":"d:\\Projects\\Baekjoon\\CPP\\32775 - 기회와 4시간의 벽 1\\main.cpp","tests":[{"id":1748041036107,"input":"80\n99","output":"high speed rail"},{"id":1748041042406,"input":"99\n98","output":"flight"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Projects\\Baekjoon\\CPP\\32775 - 기회와 4시간의 벽 1\\main.cpp","group":"local","local":true}
