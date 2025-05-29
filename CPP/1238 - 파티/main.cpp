@@ -1,48 +1,6 @@
 #include <iostream>
-
-
-#define SIZE 1001
-#define INF 100000000
-
-int adj[SIZE][SIZE];
-int min_len_f[SIZE];
-int min_len_b[SIZE];
-bool vis[SIZE];
-
-
-
-
-void init(void){
-    for(int i=0;i<SIZE;i++){
-        min_len_f[i] = INF;
-        min_len_b[i] = INF;
-        for(int j=0;j<SIZE;j++){
-            adj[i][j] = INF;
-        }
-    }
-}
-
-
-int getMinIndex(int size, int origin){
-    int min = INF;
-    int ret = 1;
-    for(int i=1;i<=size;i++){
-        if(adj[origin][i] < min && !vis[i]){
-            min = adj[origin][i];
-            ret = i;
-        }
-    }
-
-    return ret;
-}
-
-
-
-void dijkstra(int size, int origin){
-    
-
-    
-}
+#include <vector>
+#include <queue>
 
 
 
@@ -51,80 +9,48 @@ int main(){
     std::cin.tie(NULL);
     std::cout.tie(NULL);
 
-    int N, M, X;
-    std::cin >> N;
-    std::cin >> M;
-    std::cin >> X;
+    int N,M,X;
+    std::cin >> N >> M >> X;
 
-    init();
+    std::vector<std::vector<std::pair<int, int>>> graph(M);
+    std::vector<std::vector<std::pair<int, int>>> graph_rev(M);
 
-    int from, to, dist;
+    std::vector<int> dist(N+1, INT32_MAX);
+    std::vector<int> dist_rev(N+1, INT32_MAX);
+
+    std::priority_queue<std::pair<int, int>> pq;
+    std::priority_queue<std::pair<int, int>> pq_rev;
+
+    int a,b,c;
     for(int i=0;i<M;i++){
-        std::cin >> from;
-        std::cin >> to;
-        std::cin >> dist;
-
-        adj[from][to] = dist;
+        std::cin >> a >> b >> c;
+        graph[a].push_back({b,c});
+        graph_rev[b].push_back({a,c});
     }
 
-    for(int i=1;i<=N;i++){
-        adj[i][i] = 0;
-    }
 
-    // dijkstra_front
-    for(int i=1;i<=N;i++){
-        vis[i] = false;
-        min_len_f[i] = adj[X][i];
-    }
-    vis[X] = true;
+    // 정방향 다익스트라 : 출발점 X
 
-    int cur;
-    for(int i=0;i<N-2;i++){
-        cur = getMinIndex(N, X);
-        vis[cur] = true;
-        for(int j=1; j<=N; j++ ){
-            if(!vis[j] && min_len_f[cur] + adj[cur][j] < min_len_f[j]){
-                min_len_f[j] = min_len_f[cur] + adj[cur][j];
-            }
+    pq.push({0, X});
+
+    while(!pq.empty()){
+        int to = pq.top().first;
+        int cost = pq.top().second;
+        pq.pop();
+
+
+        if(dist[to] < cost) continue;
+
+        for(auto next : graph[to]){
+            if(next.second + cost < dist[next.first])
         }
-    }
-
-    // dijkstra_back
-    for(int i=1;i<=N;i++){
-        vis[i] = false;
-        min_len_b[i] = adj[X][i];
-    }
-    vis[X] = true;
-
-    for(int i=0;i<N-2;i++){
-        cur = getMinIndex(N, X);
-        vis[cur] = true;
-        for(int j=1; j<=N; j++ ){
-            if(!vis[j] && min_len_b[cur] + adj[cur][j] < min_len_b[j]){
-                min_len_b[j] = min_len_b[cur] + adj[cur][j];
-            }
-        }
+        
     }
 
 
 
+    // 역방향 다익스트라 : 출발점 X
 
-
-
-    int ret = 0;
-
-
-    for(int i=1;i<=N;i++){
-        int len = min_len_b[i] + min_len_f[i];
-        if(len >= INF){
-            continue;
-        }else{
-            ret = ret<len?len:ret;
-        }
-    }
-
-
-    std::cout << ret << "\n";
 
     return 0;
 }

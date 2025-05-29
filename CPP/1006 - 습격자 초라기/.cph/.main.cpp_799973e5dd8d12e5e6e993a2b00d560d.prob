@@ -1,0 +1,1 @@
+{"name":"Local: main","url":"d:\\Projects\\Baekjoon\\CPP\\1006 - 습격자 초라기\\main.cpp","tests":[{"id":1748329618498,"input":"1\n8 100\n70 60 55 43 57 60 44 50\n58 40 47 90 45 52 80 40","output":"11"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Projects\\Baekjoon\\CPP\\1006 - 습격자 초라기\\main.cpp","group":"local","local":true}
