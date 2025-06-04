@@ -76,6 +76,7 @@
         "ranges": "cpp",
         "span": "cpp",
         "stack": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "iomanip": "cpp"
     }
 }

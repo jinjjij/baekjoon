@@ -2,53 +2,32 @@
 #include <vector>
 
 
-typedef long long int lld;
+void build(int node, int left, int right){
+    int size = right - left + 1;
+    if(size == 1){
+        tree[node] = {h[left], h[left], h[left], h[left], h[left]};
+        return;
+    }
 
-
-lld process(int left, int right, std::vector<int> arr){
     int mid = (left + right)/2;
+    build(node*2, left, mid);
+    build(node*2+1, mid+1, right);
 
-    if(right == left){
-//        fprintf(stderr, "\nprocess(%d, %d) = %d ended\n", left, right, arr[left]);
-        return arr[left];
-    }
 
-    lld lOut = process(left, mid, arr);
-    lld rOut = process(mid+1, right, arr);
-
-    // 가운데 두줄을 포함하는 최댓값
-    lld mMax = 0;
-    int testHeight = std::min<int>(arr[mid], arr[mid+1]);
-
-    for(int i=1;i<=testHeight;i++){
-        int l = mid;
-        int r = mid+1;
-
-        while(true){
-            if(l>left && arr[l-1] >= i){
-                l--;
-            }else{
-                break;
-            }
-        }
-
-        while(true){
-            if(r<right && arr[r+1] >= i){
-                r++;
-            }else{
-                break;
-            }
-        }
-
-        lld curArea = (r-l+1)*i;
-        if(curArea > mMax)  mMax = curArea;
-//        fprintf(stderr, "\n%d(l:%d, r:%d)->%lld", i, l, r, curArea);
-    }
-
-    //fprintf(stderr, "\nprocess(%d, %d)(%lld, %lld, %lld) = %lld ended\n", left, right, lOut, rOut, mMax, std::max<lld>(std::max<lld>(lOut, rOut),mMax));
-    return std::max<lld>(std::max<lld>(lOut, rOut),mMax);
 }
 
+
+struct Seg{
+    int left;
+    int left_h;
+    int max;
+    int right;
+    int right_h;
+};
+
+std::vector<int> h;
+std::vector<Seg> tree;
+int N;
 
 
 int main(){
@@ -56,25 +35,23 @@ int main(){
     std::cin.tie(NULL);
     std::cout.tie(NULL);
 
-    int n = 0;
     while(true){
-        // input
-        std::cin >> n;
+        std::cin >> N;
+        if(N==0)    break;
 
-        if(n == 0){
-            break;
+        h.assign(N,0);
+        tree.assign(N*2,{0,0,0,0,0});
+
+        for(int i=0;i<N;i++){
+            std::cin >> h[i];
         }
 
-        std::vector<int> input;
-        for(int i=0;i<n;i++){
-            int tmp;
-            std::cin >> tmp;
-            input.push_back(tmp);
-        }
 
-        // output
-        std::cout << process(0, n-1, input) << "\n";
+        build(0,0,N-1);
+
+        std::cout << tree[0].max << "\n";
     }
+    
 
     return 0;
 }
