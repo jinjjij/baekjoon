@@ -1,0 +1,1 @@
+{"name":"Local: main","url":"d:\\Projects\\Baekjoon\\CPP\\16208 - 귀찮음\\main.cpp","tests":[{"id":1749683572811,"input":"4\n3 5 4 2","output":"71"},{"id":1749683573549,"input":"10\n12 43 22 51 2 55 8 21 98 50","output":"55164"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Projects\\Baekjoon\\CPP\\16208 - 귀찮음\\main.cpp","group":"local","local":true}

@@ -1,0 +1,1 @@
+{"name":"Local: main","url":"d:\\Projects\\Baekjoon\\CPP\\10865 - 친구 친구\\main.cpp","tests":[{"id":1749680853762,"input":"5 5\n1 2\n3 4\n2 5\n5 1\n4 2","output":"2\n3\n1\n2\n2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Projects\\Baekjoon\\CPP\\10865 - 친구 친구\\main.cpp","group":"local","local":true}
