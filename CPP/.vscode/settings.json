@@ -79,6 +79,8 @@
         "random": "cpp",
         "iomanip": "cpp",
         "unordered_set": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "bitset": "cpp",
+        "regex": "cpp"
     }
 }

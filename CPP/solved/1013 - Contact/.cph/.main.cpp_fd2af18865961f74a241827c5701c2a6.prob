@@ -1,0 +1,1 @@
+{"name":"Local: main","url":"d:\\Projects\\Baekjoon\\CPP\\1013 - Contact\\main.cpp","tests":[{"id":1749772889441,"input":"3\n10010111\n011000100110001\n0110001011001","output":"NO\nNO\nYES"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Projects\\Baekjoon\\CPP\\1013 - Contact\\main.cpp","group":"local","local":true}
