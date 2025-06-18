@@ -1,7 +1,3 @@
-/*
-    원본 : 최소비용 구하기
-    https://www.acmicpc.net/problem/1916
-*/
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -30,4 +26,40 @@ std::vector<int> djkstra(int V, int startV, const std::vector<std::vector<std::p
     }
 
     return dist;
+}
+
+
+int main(){
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(NULL);
+    std::cout.tie(NULL);
+
+    int n,m;
+    std::cin >> n >> m;
+
+    std::vector<std::vector<std::pair<int,int>>> adj(n+1);
+
+    int f,t,c;
+    for(int i=0;i<m;i++){
+        std::cin >> f >> t >> c;
+        adj[f].push_back({c,t});
+    }
+
+    std::vector<int> dist;
+
+    for(int i=1;i<=n;i++){
+        dist = djkstra(n, i, adj);
+        for(int j=1;j<=n;j++){
+            if(dist[j] == INT32_MAX){
+                std::cout << "0 ";
+            }else{
+                std::cout << dist[j] << " ";
+            } 
+        }
+        std::cout << "\n";
+    }
+
+    
+    
+    return 0;
 }
