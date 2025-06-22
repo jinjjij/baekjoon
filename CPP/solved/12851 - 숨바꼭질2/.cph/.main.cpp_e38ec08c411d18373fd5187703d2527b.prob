@@ -1,0 +1,1 @@
+{"name":"Local: main","url":"d:\\Projects\\Baekjoon\\CPP\\12851 - 숨바꼭질2\\main.cpp","tests":[{"id":1750491992983,"input":"5 17","output":"4\n2"},{"id":1750554575646,"input":"10000 1","output":"99999\n1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Projects\\Baekjoon\\CPP\\12851 - 숨바꼭질2\\main.cpp","group":"local","local":true}

@@ -1,0 +1,1 @@
+{"name":"Local: main","url":"d:\\Projects\\Baekjoon\\CPP\\5639 - 이진 검색 트리\\main.cpp","tests":[{"id":1750475600357,"input":"50\n30\n24\n5\n28\n45\n98\n52\n60","output":"5\n28\n24\n45\n30\n60\n52\n98\n50"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Projects\\Baekjoon\\CPP\\5639 - 이진 검색 트리\\main.cpp","group":"local","local":true}
