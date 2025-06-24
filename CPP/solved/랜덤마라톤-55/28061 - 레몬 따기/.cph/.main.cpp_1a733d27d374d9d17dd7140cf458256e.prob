@@ -1,0 +1,1 @@
+{"name":"Local: main","url":"d:\\Projects\\Baekjoon\\CPP\\랜덤마라톤-55\\28061 - 레몬 따기\\main.cpp","tests":[{"id":1750725242111,"input":"3\n2 3 4","output":"3"},{"id":1750725246662,"input":"4\n100 97 90 12","output":"96"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Projects\\Baekjoon\\CPP\\랜덤마라톤-55\\28061 - 레몬 따기\\main.cpp","group":"local","local":true}
