@@ -1,0 +1,1 @@
+{"name":"Local: main","url":"d:\\Projects\\Baekjoon\\CPP\\14003 - 가장 긴 증가하는 부분 수열 5\\main.cpp","tests":[{"id":1750830846195,"input":"6\n10 20 10 30 20 50","output":"4\n10 20 30 50"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Projects\\Baekjoon\\CPP\\14003 - 가장 긴 증가하는 부분 수열 5\\main.cpp","group":"local","local":true}
