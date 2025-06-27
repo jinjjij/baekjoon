@@ -1,0 +1,1 @@
+{"name":"Local: main","url":"d:\\Projects\\Baekjoon\\CPP\\랜덤마라톤 56\\2460 - 지능형 기차 2\\main.cpp","tests":[{"id":1751026481182,"input":"0 32\n3 13\n28 25\n17 5\n21 20\n11 0\n12 12\n4 2\n0 8\n21 0","output":"42"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Projects\\Baekjoon\\CPP\\랜덤마라톤 56\\2460 - 지능형 기차 2\\main.cpp","group":"local","local":true}
